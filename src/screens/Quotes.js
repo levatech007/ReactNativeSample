@@ -1,37 +1,45 @@
 import React, {Component} from 'react';
-import {Text, ScrollView, Button, Image} from 'react-native';
+import {Text, View, Button, Image} from 'react-native';
  import { appStyles } from './styles';
 
 class Quotes extends Component {
   constructor() {
     super();
     this.state = {
-      quotes: []
+      selectedQuote: {
+        author: '',
+        quote:''
+      }
     }
   }
 
   componentDidMount() {
     fetch('https://catalyst-api.herokuapp.com/quotes.json')
-     .then((response) => response.json())
-     .then((responseJson) => {
+     .then((resp) => resp.json())
+     .then((respJson) => {
+       const randomIdx = Math.floor(Math.random() * respJson.length)
+       const selected = respJson[randomIdx]
        this.setState({
-         quotes: responseJson
+         selectedQuote: {
+           author: selected.name,
+           quote: selected.quote
+         }
        })
      })
      .catch((error) => {
        console.error(error);
      });
+
+
   }
 
   render() {
     return(
-      <ScrollView>
-        {
-          this.state.quotes.map((qte, idx) => {
-            return(<Text style={appStyles.instructions}>{qte.quote}</Text>)
-          })
-        }
-      </ScrollView>
+      <View style={appStyles.container}>
+        <Text style={appStyles.quote} >{ this.state.selectedQuote.quote }</Text>
+        <Text style={appStyles.quote} >-</Text>
+        <Text style={appStyles.quote} >{ this.state.selectedQuote.author }</Text>
+      </View>
     )
   }
 

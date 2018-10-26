@@ -21,6 +21,11 @@ const appStyles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  quote: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 20,
+  }
 });
 
 export { appStyles }
