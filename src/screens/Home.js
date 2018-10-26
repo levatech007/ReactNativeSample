@@ -1,6 +1,5 @@
  import React, {Component} from 'react';
- import {Platform,
-    Text, View, Button, Image} from 'react-native';
+ import {Platform, Text, View, Button, Image} from 'react-native';
  import FadeInView from 'react-native-fade-in-view';
  import { appStyles } from './styles';
  import Logo from './test-logo.png';
@@ -19,7 +18,6 @@
      this.state = {
        instructions: ["My first React Native app.", "Just testing features.", "That's it!"],
        showLogo: true,
-       quotes: [],
      }
      this.showLogo = this.showLogo.bind(this);
  }
@@ -43,6 +41,7 @@
            })
          }
          <Button onPress={this.showLogo} title={this.state.showLogo ? "Make logo dissappear" : "Make logo appear"}/>
+         <Button onPress={() => this.props.navigation.navigate('Quotes')} title="See some quotes!"/>
          </FadeInView>
        </View>
      );

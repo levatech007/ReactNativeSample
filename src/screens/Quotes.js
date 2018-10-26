@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, ScrollView, Button, Image} from 'react-native';
+ import { appStyles } from './styles';
 
 class Quotes extends Component {
   constructor() {
@@ -24,13 +25,13 @@ class Quotes extends Component {
 
   render() {
     return(
-      <View>
+      <ScrollView>
         {
           this.state.quotes.map((qte, idx) => {
             return(<Text style={appStyles.instructions}>{qte.quote}</Text>)
           })
         }
-      </View>
+      </ScrollView>
     )
   }
 
